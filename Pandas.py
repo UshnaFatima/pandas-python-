@@ -196,3 +196,60 @@ print(sr.iloc[-1])
 
 
 
+# SELECTION/FILTERING/SUBSETTING OF SERIES OBJECT HAVING INTEGER INDICES
+print(sr[1:4])         # positional indexing 
+print(sr.loc[10:8])    # actual indexing
+print(sr.iloc[1:4])    # positional indexing
+
+
+
+
+# UNDERSTANDING STEP WITH SERIES OBJECT HAVING STRING INDICES
+print(sr[0:4:2])
+
+
+
+
+# ADDING TWO SERIES OBJECT WITH SAME INTEGER INDICES
+list1=[1,2,3,4]
+list2=[5,6,7,8]
+s1=pd.Series(list1)
+s2=pd.Series(list2)
+
+print(s1)
+print(s1.index)
+
+print(s2)
+print(s2.index)
+
+s3=s1+s2
+print(s3)
+print(s3.index)
+
+
+
+
+# ADDING TWO SERIES OBJECT HAVING DIFFERENT INTEGER INDICES
+index1=[0,1,2,3]
+index2=[0,2,3,5]
+s4=pd.Series(list1,index=index1)
+s5=pd.Series(list2,index=index2)
+
+print(s4)
+print(s4.index)
+
+print(s5)
+print(s5.index)
+
+s6=s4+s5
+print(s6)
+print(s6.index)
+
+"""
+NOTE
+Problem: While performing mathematical operations on series having mismatched indices, all missing values are filled in with NaN by default.
+Solution: To handle this problem, instead of using the operators (+, -, *, /), an explicit call to s.add(), s.sub(), s.mul() and s.div() is preferred. 
+"""
+
+print(s4.add(s5,fill_value=0))
+print(s4.add(s5,fill_value=4))  
